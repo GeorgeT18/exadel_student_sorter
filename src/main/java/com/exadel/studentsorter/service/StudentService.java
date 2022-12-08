@@ -28,9 +28,9 @@ public class StudentService {
     private FileService fileService;
 
     public SortResult sortStudentRankings(List<StudentRanking> studentRankings, String sortingAlgorithmName) throws SorterNotFoundException {
-        Sorter<StudentRanking> studentSorter = SortUtil.getSorterByName(sortingAlgorithmName);
+        Sorter<StudentRanking> studentSorter = SortUtil.getSorterByName(sortingAlgorithmName, (studentRanking, studentRanking2) -> studentRanking2.getStudentScore() > studentRanking.getStudentScore() ? 1 : 0);
 
-        return studentSorter.sort(studentRankings, (studentRanking, studentRanking2) -> studentRanking2.getStudentScore() > studentRanking.getStudentScore() ? 1 : 0);
+        return studentSorter.sort(studentRankings);
     }
 
     public String writeStudentRankingsToTxtFile(List<StudentRanking> studentRankings) throws FileNotFoundException {

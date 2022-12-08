@@ -5,12 +5,16 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MergeSorter<T> extends CustomSorter<T> {
-    @Override
-    protected void sortImpl(List<T> list, Comparator<T> sortByValueComparator) {
-        this.mergeSort(list, list.size(), sortByValueComparator);
+    public MergeSorter(Comparator<T> comparator) {
+        super(comparator);
     }
 
-    protected void mergeSort(List<T> list, int n, Comparator<T> sortByValueComparator) {
+    @Override
+    protected void sortImpl(List<T> list) {
+        this.mergeSort(list, list.size());
+    }
+
+    protected void mergeSort(List<T> list, int n) {
         if (n < 2) {
             return;
         }
@@ -24,16 +28,16 @@ public class MergeSorter<T> extends CustomSorter<T> {
         for (int i = mid; i < n; i++) {
             r.add(i - mid, list.get(i));
         }
-        mergeSort(l, mid, sortByValueComparator);
-        mergeSort(r, n - mid, sortByValueComparator);
+        mergeSort(l, mid);
+        mergeSort(r, n - mid);
 
-        merge(list, l, r, mid, n - mid, sortByValueComparator);
+        merge(list, l, r, mid, n - mid);
     }
 
-    protected void merge(List<T> list, List<T> l, List<T> r, int left, int right, Comparator<T> sortByValueComparator) {
+    protected void merge(List<T> list, List<T> l, List<T> r, int left, int right) {
         int i = 0, j = 0, k = 0;
         while (i < left && j < right) {
-            if (sortByValueComparator.compare(l.get(i), r.get(j)) > 0) {
+            if (this.comparator.compare(l.get(i), r.get(j)) > 0) {
                 list.set(k++, r.get(j++));
             }
             else {

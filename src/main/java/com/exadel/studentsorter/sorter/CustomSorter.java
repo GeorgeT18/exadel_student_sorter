@@ -6,12 +6,18 @@ import java.util.Comparator;
 import java.util.List;
 
 public abstract class CustomSorter<T> implements Sorter<T> {
-    protected abstract void sortImpl(List<T> list, Comparator<T> sortByValueComparator);
+    protected abstract void sortImpl(List<T> list);
 
-    public SortResult sort(List<T> list, Comparator<T> sortByValueComparator) {
+    protected Comparator<T> comparator;
+
+    CustomSorter(Comparator<T> comparator) {
+        this.comparator = comparator;
+    }
+
+    public SortResult sort(List<T> list) {
         long currentTimeInMilliseconds = System.currentTimeMillis();
 
-        this.sortImpl(list, sortByValueComparator);
+        this.sortImpl(list);
 
         return new SortResult(System.currentTimeMillis() - currentTimeInMilliseconds);
     }
