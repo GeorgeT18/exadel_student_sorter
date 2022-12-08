@@ -6,7 +6,6 @@ import com.exadel.studentsorter.exception.StudentFileParserException;
 import com.exadel.studentsorter.model.SortResult;
 import com.exadel.studentsorter.model.StudentRanking;
 import com.exadel.studentsorter.model.StudentRankingsWithStudentSortResult;
-import com.exadel.studentsorter.model.StudentSortResult;
 import com.exadel.studentsorter.sorter.Sorter;
 import com.exadel.studentsorter.util.SortUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Properties;
-
 @Getter
 @Setter
 @AllArgsConstructor
-public class StudentRanking extends Properties {
+public class StudentRanking {
     private String studentName;
     private Float studentScore;
 }
