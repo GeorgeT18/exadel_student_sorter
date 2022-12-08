@@ -30,7 +30,7 @@ public class StudentService {
     public SortResult sortStudentRankings(List<StudentRanking> studentRankings, String sortingAlgorithmName) throws SorterNotFoundException {
         Sorter<StudentRanking> studentSorter = SortUtil.getSorterByName(sortingAlgorithmName);
 
-        return studentSorter.sort(studentRankings, (studentRanking, studentRanking2) -> studentRanking.getStudentScore() > studentRanking2.getStudentScore() ? 1 : 0);
+        return studentSorter.sort(studentRankings, (studentRanking, studentRanking2) -> studentRanking2.getStudentScore() > studentRanking.getStudentScore() ? 1 : 0);
     }
 
     public String writeStudentRankingsToTxtFile(List<StudentRanking> studentRankings) throws FileNotFoundException {
